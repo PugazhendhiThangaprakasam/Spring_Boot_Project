@@ -1,12 +1,11 @@
-package com.example.realestate.model;
 
+package com.example.realestate.model;
 
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,12 +13,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Buy {
+public class Rent {
     @Id
     private int id;
     private String place;
@@ -31,8 +29,7 @@ public class Buy {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "post_id")
-    private Post buypost;
-    
+    private Post rentpost;
 }
 
 

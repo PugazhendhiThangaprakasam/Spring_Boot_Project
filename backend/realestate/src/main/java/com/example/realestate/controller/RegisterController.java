@@ -3,7 +3,8 @@ package com.example.realestate.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.realestate.model.Register;
-import com.example.realestate.services.RegisterService;
+import com.example.realestate.service.RegisterService;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,7 +35,7 @@ public class RegisterController {
         return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
     }
     
-    @GetMapping("/getdetails")
+    @GetMapping("/registers")
     public ResponseEntity<List<Register>> getMethodName() {
         List<Register> list =  registerService.getDetails();
         if(list.size() == 0)
@@ -44,7 +45,7 @@ public class RegisterController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
     
-    @PutMapping("/update/{email}")
+    @PutMapping("/register/{email}")
     public ResponseEntity<Register> putMethodName(@PathVariable("email") String email, @RequestBody Register register) {
         if(registerService.updatePassword(email,register) == true)
         {
@@ -54,7 +55,7 @@ public class RegisterController {
         return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/delete/{email}")
+    @DeleteMapping("/register/{email}")
     public ResponseEntity<Register> delete(@PathVariable("email") String mail)
     {
         if(registerService.deleteDetails(mail)==true)
@@ -64,3 +65,5 @@ public class RegisterController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
+
+
